@@ -1,3 +1,5 @@
+const hiddenH1 = document.querySelector("#hiddenH1")
+
 function lazyLoad() {
   const scriptTag = document.createElement('script'); 
   scriptTag.src = "lazy.js";
@@ -5,16 +7,12 @@ function lazyLoad() {
   body.appendChild(scriptTag);
 }
 
-const hiddenH1 = document.querySelector("#hiddenH1")
-let observer = new IntersectionObserver(function(entry) {
-  if (entry[0].isIntersecting) {
-    console.log("visible now")
-
+let observer = new IntersectionObserver(function(entries) {
+  if (entries[0].isIntersecting) {
     setTimeout(function() {
       lazyLoad()
     }, 500)
     
-
     observer.unobserve(hiddenH1)
   }
   

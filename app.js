@@ -9,6 +9,7 @@ function lazyLoad() {
 
 let observer = new IntersectionObserver(function(entries) {
   if (entries[0].isIntersecting) {
+    console.log("Lazy loading now!")
     setTimeout(function() {
       lazyLoad()
     }, 500)
